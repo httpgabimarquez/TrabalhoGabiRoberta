@@ -2,21 +2,22 @@ const User = require('../models/User');
 const secret = require('../config/auth.json');
 const jwt = require('jsonwebtoken');
 
-/*
 const createUser = async (req, res) => {
-    const {            } = req.body;
+    const {name,email,password } = req.body;
     await User.create({
-       
-
-
+       name:name,
+       email:email,
+       password:password
     }).then(() => {
-        res.json('         ');
-        console.log('           ');
+        res.json('Usuario criado ');
+        console.log('Usuario criado');
     }).catch((erro) => {
-        res.json('             ');
-        console.log(`  : ${erro}`);
+        res.json(' Erro ao criar usuario ');
+        console.log(` Erro ao criar usuario  : ${erro}`);
     })
 }
+
+/*
 const findUsers = async (req, res) => {
     const     = await User.findAll();
     try {
