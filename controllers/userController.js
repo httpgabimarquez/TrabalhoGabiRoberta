@@ -64,31 +64,35 @@ const updateUser = async (req, res) => {
         res.status(404).json("Erro ao atualizar!");
     }
 }
-/*
+
 const authenticatedUser = async (req, res) => {
-    const {       } = req.body;
+    const {name,email,password} = req.body;
     try {
         const isUserAuthenticated = await User.findOne({
             where: {
-                
+                name:name,
+                email:email,
+                password:password
             }
         })
         const token = jwt.sign({
-            name: 
-            email: 
+            name:isUserAuthenticated.name,
+            email:isUserAuthenticated.email,
+            password:isUserAuthenticated.password
         },
             secret.secret, {
             expiresIn: 86400,
         })
         return res.json({
-            name: 
+            name: isUserAuthenticated.name,
             email: isUserAuthenticated.email,
+            password:isUserAuthenticated.password,
             token: token
         });
     } catch (error) {
-        return res.json("");
+        return res.json("Erro na autenticação do usuário");
     }
 }
 
-*/
-module.exports = { createUser, findUsers, deleteUser, updateUser};
+
+module.exports = { createUser, findUsers, deleteUser, updateUser, authenticatedUser};
