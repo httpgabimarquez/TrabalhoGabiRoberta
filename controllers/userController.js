@@ -26,21 +26,22 @@ const findUsers = async (req, res) => {
         res.status(404).json("Ocorreu um erro na busca!");
     };
 }
-/*
+
 const deleteUser = async (req, res) => {
     const id = parseInt(req.params.id);
     try {
         await User.destroy({
             where: {
-                
+                id:id
             }
         }).then(() => {
-            res.json("         ");
+            res.json(" Usuario deletado");
         })
     } catch (error) {
-        res.status(404).json("      ");
+        res.status(404).json("Erro ao deletar");
     }
 }
+/*
 const updateUser = async (req, res) => {
     const id = parseInt(req.params.id);
     const {       } = req.body;
@@ -86,6 +87,5 @@ const authenticatedUser = async (req, res) => {
     }
 }
 
-
-module.exports = { createUser, findUsers, deleteUser, updateUser, authenticatedUser };
 */
+module.exports = { createUser, findUsers, deleteUser};
