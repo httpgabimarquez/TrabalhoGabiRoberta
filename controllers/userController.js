@@ -17,7 +17,6 @@ const createUser = async (req, res) => {
     })
 }
 
-
 const findUsers = async (req, res) => {
     const users = await User.findAll();
     try {

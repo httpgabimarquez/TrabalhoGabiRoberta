@@ -6,10 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API - Users</title>
 </head>
-
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 20px;
+        background-color: #f0f0f0;
+    }
+    
+    h1 {
+        color: #333;
+    }
+    
+    h2 {
+        color: #555;
+    }
+    
+    p {
+        color: #777;
+        line-height: 1.5;
+    }
+    
+    h1, h2 {
+        margin-bottom: 10px;
+    }
+    
+    h1:first-child {
+        font-size: 36px;
+    }
+    
+    h1:last-child {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    p {
+        font-size: 18px;
+    }
+</style>
 <body>
     <h1>API - USER</h1>
-    <h2>Falar as tecnologias e explicar os endpoints</h2>
     <h1>Quais foram os endpoints que nós utilizamos?</h1>
     <p>1 - routes.post('/user', userController.createUser);</p>
     <p>2 - routes.get('/users', userController.findUsers);</p>
@@ -31,6 +70,15 @@
 
     <h2>5 - Método HTTP: POST '/user/authenticated' </h2>
     <p>Usado para fazer a autenticação de um user, e para que o usuário faça login no sistema, após enviar a solicitação (POST), o controlador faz o processamento da solicitação, faz a verificação de todos os dados fornecidos pelo usuário, e, se estiverem corretas, um novo token será gerado que permitirá o acesso do usuário ao sistema. </p>
+
+    <h2>E quais tecnologias nós utilizamos?</h2>
+    <p>Linguagens de programação: HTML e JavaScript</p>
+    <p>Banco de dados: Postgres</p>
+    <p>Autenticação e Autorização: JWT (Json Web Token)</p>
+    <p>Protocolos de comunicação: Métodos HTTP (GET, POST, PUT, DELETE)</p>
+
+    <h3>Alunas: Gabriela Marques e Roberta Fonseca - 6º período - Técnico em Informática</h3>
+
 </body>
 
 </html>
