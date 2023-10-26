@@ -90,9 +90,6 @@ const authenticatedUser = async (req, res) => {
             res.json("Erro na comparação ")
         }
     
-
-        
-        
     } catch (error) {
         return res.json("Erro na autenticação do usuário");
     }
