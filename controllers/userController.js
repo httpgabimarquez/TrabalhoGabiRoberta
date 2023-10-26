@@ -4,10 +4,11 @@ const jwt = require('jsonwebtoken');
 
 const createUser = async (req, res) => {
     const {name,email,password } = req.body;
+    const newPassword = await bcrypt.hash (password, 10)
     await User.create({
        name:name,
        email:email,
-       password:password
+       password:newPassword
     }).then(() => {
         res.json('Usuario criado ');
         console.log('Usuario criado');
@@ -65,29 +66,33 @@ const updateUser = async (req, res) => {
 }
 
 const authenticatedUser = async (req, res) => {
-    const {name,email,password} = req.body;
-    try {
+    const {email,password} = req.body;
+     try {
         const isUserAuthenticated = await User.findOne({
             where: {
-                name:name,
-                email:email,
-                password:password
+                email:email
             }
         })
+        const comparePassword  = await bcrypt.compare(password, isUserAuthenticated.password );
+         if( comparePassword ){
         const token = jwt.sign({
-            name:isUserAuthenticated.name,
-            email:isUserAuthenticated.email,
-            password:isUserAuthenticated.password
+            email:isUserAuthenticated.email
         },
             secret.secret, {
             expiresIn: 86400,
         })
         return res.json({
-            name: isUserAuthenticated.name,
             email: isUserAuthenticated.email,
             password:isUserAuthenticated.password,
             token: token
         });
+        } else{
+            res.json("Erro na comparação ")
+        }
+    
+
+        
+        
     } catch (error) {
         return res.json("Erro na autenticação do usuário");
     }
