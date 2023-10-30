@@ -11,7 +11,7 @@ const createUser = async (req, res) => {
        email:email,
        password:newPassword
     }).then(() => {
-        res.json('Usuario criado ');
+        res.json('Usuario criado');
         console.log('Usuario criado');
     }).catch((erro) => {
         res.json(' Erro ao criar usuario ');
@@ -82,11 +82,7 @@ const authenticatedUser = async (req, res) => {
             secret.secret, {
             expiresIn: 86400,
         })
-        return res.json({
-            email: isUserAuthenticated.email,
-            password:isUserAuthenticated.password,
-            token: token
-        });
+        return res.json('Usuário existe e autenticado com sucesso')
         } else{
             res.json("Erro na comparação ")
         }
