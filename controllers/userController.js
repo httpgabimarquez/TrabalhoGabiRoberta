@@ -66,13 +66,16 @@ const updateUser = async (req, res) => {
     }
 }
 
+// res.cookie('token', token, { httpOnly: true}).json({
+// name: isUserAuthenticated.name, 
+// email: isUserAuthenticated.email,
+// token: token
+// });
+
 const authenticatedUser = async (req, res) => {
     const {email,password} = req.body;
      try {
-        const isUserAuthenticated = await User.findOne({
-            where: {
-                email:email
-            }
+        const isUserAuthenticated = await User.findOne({ where: { email:email }
         })
         const comparePassword  = await bcrypt.compare(password, isUserAuthenticated.password );
          if( comparePassword ){
@@ -82,7 +85,11 @@ const authenticatedUser = async (req, res) => {
             secret.secret, {
             expiresIn: 86400,
         })
-        return res.json('Usuário existe e autenticado com sucesso')
+        res.cookie('token', token, { httpOnly: true}).json({
+            name: isUserAuthenticated.name, 
+            email: isUserAuthenticated.email,
+            token: token
+            });
         } else{
             res.json("Erro na comparação ")
         }
