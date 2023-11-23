@@ -9,15 +9,15 @@ const User = connection.sequelize.define('users',{
     },
     name: {
         type: connection.Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     password:{
         type: connection.Sequelize.STRING,
-        allowNull:false
+        allowNull:true
     },
     email:{
         type: connection.Sequelize.STRING,
-        allowNull:false,
+        allowNull:true,
         unique:true
     } 
     })

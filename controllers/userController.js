@@ -46,25 +46,52 @@ const deleteUser = async (req, res) => {
 const updateUser = async (req, res) => {
     const id = parseInt(req.params.id);
     const { name,email,password } = req.body;
+    const newPassword = await bcrypt.hash (password, 10)
     try {
-        await User.update(
+       const updateUser = await User.update(
             {
                 name:name,
                 email:email,
-                password:password 
+                password:newPassword 
             },
             {
                 where: {
                     id: id
                 }
             }
-        ).then(() => {
-            res.json("Usuario atualizado");
-        })
-    } catch (error) {
-        res.status(404).json("Erro ao atualizar!");
+        );
+        if (updateUser[0] === 1){
+            res.json(" Usuário atualizado com sucesso!");
+        } else {
+            res.status(4004).json("usuario não encontrado");
+        }
+    } catch(error){
+        res.status(500).json({error:error.message});
     }
 }
+
+//const updateUser = async (req, res) => {
+ //   const id = parseInt(req.params.id);
+  //  const { name,email,password } = req.body;
+  //  try {
+     //   await User.update(
+       //     {
+           //     name:name,
+           //     email:email,
+            //    password:password 
+          //  },
+          //  {
+          //      where: {
+          //          id: id
+           //     }
+         //   }
+    //    ).then(() => {
+      //      res.json("Usuario atualizado");
+      //  })
+   // } catch (error) {
+    //    res.status(404).json("Erro ao atualizar!");
+   // }
+//}
 
 // res.cookie('token', token, { httpOnly: true}).json({
 // name: isUserAuthenticated.name, 
