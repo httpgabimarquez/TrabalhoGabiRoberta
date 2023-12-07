@@ -17,18 +17,18 @@ app.listen(port, () => { console.log(`Run server...${port}`) });
 
 
 app.use(cookieParser());
-
+const routes = require('./routers/routes');
 app.use(
     expressJWT({
         secret: process.env.SECRET,
         algorithms: ["HS256"],
         getToken: req => req.cookies.token
     }).unless({
-        path: ["/user/authenticated", "/"]
+        path: ["/user/authenticated", "/user"]
     })
 );
 
-const routes = require('./routers/routes');
+
 app.use(express.json(), routes, cors());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
